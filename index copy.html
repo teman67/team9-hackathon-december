@@ -147,11 +147,34 @@
 			</div>
 
 			<!-- Write Text Section -->
-			<div class="write-text">
+			<!-- <div class="write-text">
 				<label for="cardText">Write Text:</label>
-				<textarea name="ctext" id="cardText" class="form-control" rows="2">
-					Merry Christmas</textarea>
+				<textarea name="ctext" id="cardText" class="form-control" rows="2"
+					oninput="updateTextOnImage()"></textarea>
+			</div> -->
+
+			<div>
+				<label for="cardText">Enter Text:</label>
+				<input type="text" id="cardText" value="mery">
+				<button onclick="updateTextOnImage()">Update Text</button>
 			</div>
+
+			<div>
+				<label>Text Position:</label>
+				<input type="radio" name="tpos" value="top" checked> Top
+				<input type="radio" name="tpos" value="middle"> Middle
+				<input type="radio" name="tpos" value="bottom"> Bottom
+				<button onclick="updateTextPosition()">Update Position</button>
+			</div>
+
+			<!-- <div class="text-overlay" id="text-inside-card">mery</div> -->
+
+			<!-- <div class="write-text">
+					<label for="cardText">Write Text:</label>
+					<textarea name="ctext" id="cardText" class="form-control" rows="2">
+					Merry Christmas</textarea
+					>
+				</div> -->
 
 
 			<input class="m-1" type="text" id="shareLink" readonly>
@@ -172,14 +195,15 @@
 					placeholder="http://www.youtube.com/embed/VIDEO_ID" />
 			</div>
 
-			<div class="options-configuration">
-				<div>
-					<label>Text Position:</label>
-					<input type="radio" name="tpos" value="top" id="top" checked> Top
-					<input type="radio" name="tpos" value="middle" id="middle"> Middle
-					<input type="radio" name="tpos" value="bottom" id="bottom"> Bottom
-				</div>
-			</div>
+			<!-- <div class="options-configuration">
+				<input type="radio" name="tpos" id="tpos1" value="top" onchange="updateTextPosition()" checked />
+				<label for="tpos1">top</label>
+				<input type="radio" name="tpos" id="tpos2" value="middle" onchange="updateTextPosition()" />
+				<label for="tpos2">middle</label>
+				<input type="radio" name="tpos" id="tpos3" value="bottom" onchange="updateTextPosition()" />
+				<label for="tpos3">bottom</label>
+				[Text Position]
+			</div> -->
 
 			<div class="options-configuration">
 				<input type="radio" name="imagesrc" id="imagesrc1" value="internal" checked />
@@ -273,6 +297,35 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="assets/scripts/script.js"></script>
+	<script>
+		function updateTextPosition() {
+			// Get the selected text position
+			var selectedPosition = document.querySelector('input[name="tpos"]:checked').value;
+
+			// Get the text overlay element
+			var textOverlay = document.querySelector('.text-overlay');
+
+			// Apply new styles based on the selected position
+			switch (selectedPosition) {
+				case 'top':
+					textOverlay.style.position = 'absolute';
+					textOverlay.style.top = '20%';
+					break;
+				case 'middle':
+					textOverlay.style.position = 'absolute';;
+					textOverlay.style.top = '50%';
+					textOverlay.style.transform = 'translateY(-50%)'; // Center vertically
+					break;
+				case 'bottom':
+					textOverlay.style.position = 'absolute';;
+					textOverlay.style.top = '80%'; // You may adjust the default bottom position
+					break;
+			}
+		}
+
+	</script>
+
+
 </body>
 
 </html>

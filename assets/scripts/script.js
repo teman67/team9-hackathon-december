@@ -200,5 +200,37 @@ addEventListener('DOMContentLoaded', function () {
   })
 })
 
+function updateTextPosition() {
+  // Get the selected text position
+  var selectedPosition = document.querySelector('input[name="tpos"]:checked').value;
+
+  // Get the text overlay element
+  var textOverlay = document.querySelector('.text-overlay');
+
+  // Apply new styles based on the selected position
+  switch (selectedPosition) {
+    case 'top':
+      textOverlay.style.position = 'absolute';
+      textOverlay.style.top = '20%';
+      break;
+    case 'middle':
+      textOverlay.style.position = 'absolute';
+      textOverlay.style.top = '50%';
+      textOverlay.style.transform = 'translateY(-50%)'; // Center vertically
+      break;
+    case 'bottom':
+      textOverlay.style.position = 'absolute';
+      textOverlay.style.top = '80%'; // You may adjust the default bottom position
+      break;
+  }
+}
+
+// Attach event listeners to radio buttons to update automatically
+var radioButtons = document.querySelectorAll('input[name="tpos"]');
+radioButtons.forEach(function (radioButton) {
+    radioButton.addEventListener('change', updateTextPosition);
+});
+
+
 updateCardText()
 updateURL()

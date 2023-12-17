@@ -202,6 +202,7 @@ input[type="radio"] {
   position: relative;
   display: inline-block;
   height: 35vw;
+  width: 100%;
 }
 
 .image-container img {
